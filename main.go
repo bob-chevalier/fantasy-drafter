@@ -75,6 +75,20 @@ func main() {
         }
         controller.GetDraftPicks(context)
     })
+    r.GET("/startpolling", func(context *gin.Context) {
+        controller, ok := context.MustGet(CONTROLLER).(*controller.Controller)
+        if !ok {
+            log.Fatal("Unable to retrieve Controller from Context")
+        }
+        controller.StartPolling(context)
+    })
+    r.GET("/stoppolling", func(context *gin.Context) {
+        controller, ok := context.MustGet(CONTROLLER).(*controller.Controller)
+        if !ok {
+            log.Fatal("Unable to retrieve Controller from Context")
+        }
+        controller.StopPolling(context)
+    })
 //    r.POST("/todo", teams.AddTodoHandler)
 //    r.DELETE("/todo/:id", teams.DeleteTodoHandler)
 //    r.PUT("/todo", teams.CompleteTodoHandler)

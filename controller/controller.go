@@ -2,11 +2,12 @@ package controller
 
 import (
     "encoding/json"
-//    "fmt"
+    "fmt"
     "io"
     "io/ioutil"
     "log"
     "sync"
+    "time"
     "net/http"
 //    "github.com/bob.chevalier/fantasy-drafter/fantasy-sites/yahoo"
     "github.com/bob.chevalier/fantasy-drafter/fantasy-sites"
@@ -15,7 +16,7 @@ import (
 //    "golang.org/x/oauth2/yahoo"
 )
 
-var POSITIONS = [...]string{ "QB", "RB", "WR", "TE", "DEF", "K" }
+//var POSITIONS = [...]string{ "QB", "RB", "WR", "TE", "DEF", "K" }
 
 type Controller struct {
     FantasySite site.FantasySite
@@ -23,6 +24,7 @@ type Controller struct {
     players map[string]site.Player
     draftPicks []site.DraftPick
     mutex sync.RWMutex
+    stopPolling chan bool
 }
 
 func New(fantasySite site.FantasySite) Controller {
@@ -68,6 +70,30 @@ func (controller *Controller) GetDraftPicks(context *gin.Context) {
     context.JSON(http.StatusOK, controller.draftPicks)
 }
 
+func (controller *Controller) StartPolling(context *gin.Context) {
+    controller.stopPolling = make(chan bool)
+    go controller.pollForDraftPicks()
+    context.JSON(http.StatusOK, nil)
+}
+
+func (controller *Controller) StopPolling(context *gin.Context) {
+    close(controller.stopPolling)
+    context.JSON(http.StatusOK, nil)
+}
+
+func (controller *Controller) pollForDraftPicks() {
+    ticker := time.NewTicker(3 * time.Second)
+    defer ticker.Stop()
+    for {
+        select {
+        case <- controller.stopPolling:
+            return
+        case <-ticker.C:
+            controller.updateDraftPicks()
+        }
+    }
+}
+
 func (controller *Controller) updateTeams() {
     teams := controller.FantasySite.GetTeams()
 
@@ -105,6 +131,7 @@ func (controller *Controller) updateDraftPicks() {
 
     currentPickIdx := len(controller.draftPicks)
     picks := controller.FantasySite.GetDraftPicks()
+    fmt.Printf("BFC num picks: %d\n", len(picks))
 
     controller.mutex.Lock()
     // iterate over all picks since the last processed pick
