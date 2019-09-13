@@ -23,6 +23,22 @@ func ControllerMiddleware() gin.HandlerFunc {
     controller := controller.New(yahoo.New())
     return func(context *gin.Context) {
         context.Set(CONTROLLER, &controller)
+        context.Next()
+    }
+}
+
+func CorsMiddleware() gin.HandlerFunc {
+    return func(context *gin.Context) {
+        context.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+        context.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+        context.Writer.Header().Set("Access-Control-Allow-Methods", "DELETE, GET, OPTIONS, POST, PUT")
+
+        if context.Request.Method == "OPTIONS" {
+            context.AbortWithStatus(204)
+            return
+        }
+
+        context.Next()
     }
 }
 
@@ -39,6 +55,7 @@ func main() {
     })
 
     r.Use(ControllerMiddleware())
+    r.Use(CorsMiddleware())
 
     r.GET("/code", func(context *gin.Context) {
         controller, ok := context.MustGet(CONTROLLER).(*controller.Controller)

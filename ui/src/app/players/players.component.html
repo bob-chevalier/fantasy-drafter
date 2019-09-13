@@ -1,0 +1,28 @@
+<section class="ranked-players">
+    <form [formGroup]="filtersGroup" class="filters">
+        <input type="checkbox" formControlName="showDrafted"><label>Show Drafted</label>
+        <input type="radio" formControlName="showAllPositions" value="yes" (change)="showAllPositions()"><label>All</label>
+        <div formGroupName="positionFilters" (change)="filterPositions()">
+            <input type="checkbox" formControlName="qbFilter"><label>QB</label>
+            <input type="checkbox" formControlName="rbFilter"><label>RB</label>
+            <input type="checkbox" formControlName="wrFilter"><label>WR</label>
+            <input type="checkbox" formControlName="teFilter"><label>TE</label>
+            <input type="checkbox" formControlName="defFilter"><label>DEF</label>
+            <input type="checkbox" formControlName="kFilter"><label>K</label>
+        </div>
+    </form>
+    <div class="players-header row">
+        <h2>Pos</h2>
+        <h2>Name</h2>
+        <h2>Team</h2>
+        <h2>Bye</h2>
+    </div>
+    <ol class="players">
+        <li *ngFor="let player of filteredPlayers" class="player row" [ngStyle]="{'background-color': getBackgroundColor(player)}">
+            <div>{{player.position}}</div>
+            <div>{{player.name}}</div>
+            <a href={{player.team_url}}>{{player.team}}</a>
+            <div>{{player.bye_week}}</div>
+        </li>
+    </ol>
+</section>
