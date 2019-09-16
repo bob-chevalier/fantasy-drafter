@@ -7,13 +7,15 @@ import { TeamComponent } from './team/team.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PlayersComponent } from './players/players.component';
 import { AllTeamsComponent } from './all-teams/all-teams.component';
+import { DraftBoardComponent } from './draft-board/draft-board.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TeamComponent,
     PlayersComponent,
-    AllTeamsComponent
+    AllTeamsComponent,
+    DraftBoardComponent
   ],
   imports: [
     BrowserModule,
