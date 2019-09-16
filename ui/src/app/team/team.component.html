@@ -1,5 +1,5 @@
-<section class="team">
-    <h1 class="owner">Denny</h1>
+<section *ngIf="team" class="team">
+    <h1 class="owner">{{team.manager}}</h1>
     <div class="roster-header row">
         <h2>Pos</h2>
         <h2>Name</h2>
@@ -8,110 +8,12 @@
         <h2>Bye</h2>
     </div>
     <ol class="roster">
-        <li class="player row">
-            <div>QB</div>
-            <div>Tom Brady</div>
-            <div>3</div>
-            <a href="http://espn.com">NE</a>
-            <div>3</div>
-        </li>
-        <li class="player row">
-            <div>RB</div>
-            <div>Nick Chubb</div>
-            <div>1</div>
-            <a href="http://espn.com">CLE</a>
-            <div>4</div>
-        </li>
-        <li class="player row">
-            <div>RB</div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </li>
-        <li class="player row">
-            <div>WR</div>
-            <div>Adam Thielen</div>
-            <div>2</div>
-            <a href="http://espn.com">MIN</a>
-            <div>4</div>
-        </li>
-        <li class="player row">
-            <div>WR</div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </li>
-        <li class="player row">
-            <div>WR</div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </li>
-        <li class="player row">
-            <div>TE</div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </li>
-        <li class="player row">
-            <div>DEF</div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </li>
-        <li class="player row">
-            <div>K</div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </li>
-        <li class="player row">
-            <div>BN</div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </li>
-        <li class="player row">
-            <div>BN</div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </li>
-        <li class="player row">
-            <div>BN</div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </li>
-        <li class="player row">
-            <div>BN</div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </li>
-        <li class="player row">
-            <div>BN</div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </li>
-        <li class="player row">
-            <div>BN</div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+        <li *ngFor="let player of team.roster" class="player row">
+            <div>{{player.position}}</div>
+            <div>{{player.name}}</div>
+            <div>{{player.round_drafted}}</div>
+            <a href={{player.team_url}}>{{player.team}}</a>
+            <div>{{player.bye_week}}</div>
         </li>
     </ol>
 </section>

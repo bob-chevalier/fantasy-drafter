@@ -1,0 +1,17 @@
+.teams {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.second-row {
+    direction: rtl;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+.row li {
+    direction: ltr;
+}
+

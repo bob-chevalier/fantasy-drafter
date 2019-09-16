@@ -5,7 +5,7 @@ import { AllTeamsComponent } from './all-teams/all-teams.component';
 import { PlayersComponent } from './players/players.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/roster', pathMatch: 'full' },
+    { path: '', redirectTo: '/all-teams', pathMatch: 'full' },
     { path: 'all-teams', component: AllTeamsComponent },
     { path: 'team', component: TeamComponent },
     { path: 'players', component: PlayersComponent }

@@ -9,7 +9,8 @@ import { TEAMS } from '../mock-teams';
 export class AllTeamsComponent implements OnInit {
   teams = TEAMS;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

@@ -1,10 +1,12 @@
-<section class="all-rosters">
-    <ol class="rosters">
-        <li *ngFor="let roster of rosters | slice:0:5" class="roster">
-            <div>{{player.position}}</div>
-            <div>{{player.name}}</div>
-            <a href={{player.team_url}}>{{player.team}}</a>
-            <div>{{player.bye_week}}</div>
+<section class="all-teams">
+    <ol class="row first-row">
+        <li *ngFor="let team of teams | slice:0:5" class="team">
+            <app-team [team]="team"></app-team>
+        </li>
+    </ol>
+    <ol class="row second-row">
+        <li *ngFor="let team of teams | slice:5:11" class="team">
+            <app-team [team]="team"></app-team>
         </li>
     </ol>
 </section>
