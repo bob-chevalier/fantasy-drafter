@@ -3,15 +3,17 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { RosterComponent } from './roster/roster.component';
+import { TeamComponent } from './team/team.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PlayersComponent } from './players/players.component';
+import { AllTeamsComponent } from './all-teams/all-teams.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RosterComponent,
-    PlayersComponent
+    TeamComponent,
+    PlayersComponent,
+    AllTeamsComponent
   ],
   imports: [
     BrowserModule,

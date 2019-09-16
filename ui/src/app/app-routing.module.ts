@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RosterComponent } from './roster/roster.component';
+import { TeamComponent } from './team/team.component';
+import { AllTeamsComponent } from './all-teams/all-teams.component';
 import { PlayersComponent } from './players/players.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/roster', pathMatch: 'full' },
-    { path: 'roster', component: RosterComponent },
+    { path: 'all-teams', component: AllTeamsComponent },
+    { path: 'team', component: TeamComponent },
     { path: 'players', component: PlayersComponent }
 ];
 

@@ -1,0 +1,10 @@
+<section class="all-rosters">
+    <ol class="rosters">
+        <li *ngFor="let roster of rosters | slice:0:5" class="roster">
+            <div>{{player.position}}</div>
+            <div>{{player.name}}</div>
+            <a href={{player.team_url}}>{{player.team}}</a>
+            <div>{{player.bye_week}}</div>
+        </li>
+    </ol>
+</section>
