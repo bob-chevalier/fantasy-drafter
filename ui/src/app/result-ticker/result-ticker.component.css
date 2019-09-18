@@ -1,0 +1,12 @@
+.picks {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+.pick {
+    display: flex;
+    flex-shrink: 0;
+    border: 1px solid;
+}

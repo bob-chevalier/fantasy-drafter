@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PlayersComponent } from './players/players.component';
 import { AllTeamsComponent } from './all-teams/all-teams.component';
 import { DraftBoardComponent } from './draft-board/draft-board.component';
+import { ResultTickerComponent } from './result-ticker/result-ticker.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { DraftBoardComponent } from './draft-board/draft-board.component';
     TeamComponent,
     PlayersComponent,
     AllTeamsComponent,
-    DraftBoardComponent
+    DraftBoardComponent,
+    ResultTickerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,9 @@
 .draft-board {
     display: grid;
     grid-template-columns: .85fr .15fr;
+    grid-template-rows: 1fr;
+}
+
+.result-ticker {
+    grid-column: 1 / span 1;
 }
